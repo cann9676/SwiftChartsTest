@@ -59,6 +59,16 @@ struct ContentView: View {
                 }
                 .frame(height: 200)
                 .padding()
+                
+                Chart(items) { item in
+                    PointMark(
+                        x: .value("Department", item.type),
+                        y: .value("Profit", item.value)
+                    )
+                    .foregroundStyle(Color.yellow.gradient)
+                }
+                .frame(height: 200)
+                .padding()
             }
             .navigationTitle("Charts")
         }
