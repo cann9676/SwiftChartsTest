@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Foundation
 import Charts
 
 struct Item: Identifiable {
@@ -23,7 +22,7 @@ struct ContentView: View {
     Item(type: "Design", value: 35),
     Item(type: "Operations", value: 72),
     Item(type: "Sales", value: 22),
-    Item(type: "Management", value: 130)
+    Item(type: "Management", value: 130),
     ]
     
     
@@ -32,8 +31,34 @@ struct ContentView: View {
             ScrollView {
                 //bar, line, area, ruler, point
                 Chart(items) { item in
-                    
+                    BarMark(
+                        x: .value("Department", item.type),
+                        y: .value("Profit", item.value)
+                    )
+                    .foregroundStyle(Color.red.gradient)
                 }
+                .frame(height: 200)
+                .padding()
+                
+                Chart(items) { item in
+                    LineMark(
+                        x: .value("Department", item.type),
+                        y: .value("Profit", item.value)
+                    )
+                    .foregroundStyle(Color.blue.gradient)
+                }
+                .frame(height: 200)
+                .padding()
+                
+                Chart(items) { item in
+                    AreaMark(
+                        x: .value("Department", item.type),
+                        y: .value("Profit", item.value)
+                    )
+                    .foregroundStyle(Color.green.gradient)
+                }
+                .frame(height: 200)
+                .padding()
             }
             .navigationTitle("Charts")
         }
